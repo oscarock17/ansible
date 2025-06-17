@@ -1,0 +1,17 @@
+---
+- name: Configuración básica de servidor
+  hosts: vagrant_vm
+  become: yes
+  
+  tasks:
+    - name: Instalar paquetes esenciales
+      apt:
+        name: ["git", "tree", "htop"]
+        state: present
+        update_cache: yes
+
+    - name: Habilitar firewall
+      ufw:
+        rule: allow
+        port: "22,80,443"
+        proto: tcp
