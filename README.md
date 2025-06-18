@@ -6,6 +6,7 @@ Esta carpeta de Ansible está diseñada para proporcionar una guía paso a paso 
 ## Estructura de carpetas
 
 - [01-primer-playbook](./01-primer-playbook): Ejemplo básico de un playbook sencillo para comenzar.
+- [practica](./practica/): Ejercicios de practica sobre ansible
 
 ## Requisitos
 
