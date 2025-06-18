@@ -1,4 +1,4 @@
-# Proyecto Ansible - 02-práctica-001
+# Proyecto Ansible - e01_practica
 
 Este proyecto Ansible automatiza la configuración básica de un servidor Ubuntu que incluye:
 
