@@ -1,0 +1,113 @@
+---
+- name: Configuración de servidor con Nginx, usuario devops y firewall
+  hosts: all
+  become: yes
+
+  vars_files:
+    - ../inventories/dev/group_vars/vars.yml
+
+  tasks:
+
+    - name: Instalar dependencias necesarias
+      apt:
+        name:
+          - nginx
+          - ufw
+          - wget
+          - unzip
+        state: present
+        update_cache: yes
+
+    - name: Crear usuario devops con acceso sudo
+      user:
+        name: devops
+        shell: /bin/bash
+        groups: sudo
+        append: yes
+        create_home: yes
+
+    - name: Asegurar permisos de sudo sin contraseña (opcional)
+      lineinfile:
+        dest: /etc/sudoers.d/devops
+        line: "devops ALL=(ALL) NOPASSWD:ALL"
+        create: yes
+        mode: '0440'
+
+    - name: Crear directorio para la página HTML
+      file:
+        path: "{{ landing_path }}"
+        state: directory
+        mode: '0755'
+
+    - name: Descargar template HTML
+      get_url:
+        url: "{{ landing_url }}"
+        dest: "/tmp/solid.zip"
+        mode: '0644'
+
+    - name: Descomprimir template HTML
+      unarchive:
+        src: "/tmp/solid.zip"
+        dest: "/tmp/"
+        remote_src: yes
+        creates: "/tmp/solid"
+
+    - name: Copiar archivos al directorio de Nginx
+      copy:
+        src: "/tmp/solid/"
+        dest: "{{ landing_path }}"
+        remote_src: yes
+      notify: Restart Nginx
+
+    - name: Configurar Nginx
+      template:
+        src: ../files/nginx.conf
+        dest: /etc/nginx/sites-available/solid
+      notify: Restart Nginx
+
+    - name: Habilitar sitio Nginx
+      file:
+        src: /etc/nginx/sites-available/solid
+        dest: /etc/nginx/sites-enabled/solid
+        state: link
+        force: yes
+
+    - name: Eliminar sitio por defecto de Nginx
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+
+    - name: Asegurar que Nginx esté iniciado y habilitado
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Permitir conexiones SSH (puerto 22)
+      ufw:
+        rule: allow
+        port: '22'
+        proto: tcp
+
+    - name: Permitir HTTP (puerto 80)
+      ufw:
+        rule: allow
+        port: '80'
+        proto: tcp
+
+    - name: Permitir HTTPS (puerto 443)
+      ufw:
+        rule: allow
+        port: '443'
+        proto: tcp
+
+    - name: Habilitar UFW
+      ufw:
+        state: enabled
+        policy: deny
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
