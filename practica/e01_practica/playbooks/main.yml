@@ -1,0 +1,58 @@
+---
+- name: Configuración de servidor con Nginx, usuario SSH y firewall
+  hosts: all
+  become: yes
+
+  vars_files:
+    - ../inventories/dev/group_vars/vars.yml
+
+  tasks:
+
+    - name: Asegurarse de que los paquetes necesarios están instalados
+      apt:
+        name:
+          - nginx
+          - ufw
+        state: present
+        update_cache: yes
+
+    - name: Iniciar y habilitar Nginx en el arranque
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Crear usuario con acceso SSH
+      user:
+        name: "{{ usuario_ssh }}"
+        shell: /bin/bash
+        create_home: yes
+
+    - name: Configurar clave SSH para el nuevo usuario
+      authorized_key:
+        user: "{{ usuario_ssh }}"
+        state: present
+        key: "{{ lookup('file', '../files/id_rsa.pub') }}"
+        
+    - name: Configurar página personalizada en Nginx
+      template:
+        src: ../templates/pagina.html.j2
+        dest: "{{ pagina_html }}"
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Permitir SSH en el firewall
+      ufw:
+        rule: allow
+        name: OpenSSH
+
+    - name: Permitir HTTP en el firewall
+      ufw:
+        rule: allow
+        name: "Nginx Full"
+
+    - name: Habilitar UFW si no está habilitado
+      ufw:
+        state: enabled
+        policy: deny

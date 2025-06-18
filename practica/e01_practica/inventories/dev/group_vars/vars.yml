@@ -1,0 +1,4 @@
+usuario_ssh: "deployuser"
+pagina_html: "/var/www/html/index.nginx-debian.html"
+titulo: Servidor Nginx personalizado
+mensaje: ¡Hola! Este es un servidor Nginx gestionado por Ansible.
