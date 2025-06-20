@@ -6,7 +6,9 @@ Esta carpeta de Ansible está diseñada para proporcionar una guía paso a paso 
 ## Estructura de carpetas
 
 - [01-primer-playbook](./01-primer-playbook): Ejemplo básico de un playbook sencillo para comenzar.
-- [02-inventarios-estaticos](./02-inventarios-estaticos/): Utilización de inventarios estáticos para diferentes entornos.
+- [02-ejemplo-estructura/](./02-ejemplo-estructura/): Esqueleto de una estructura para un proyecto.
+
+
 - [practica](./practica/): Ejercicios de practica sobre ansible
 
 ## Requisitos
