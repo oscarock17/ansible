@@ -1,0 +1,25 @@
+plugin: amazon.aws.aws_ec2
+regions:
+  - us-east-1
+#aws_access_key_id: ""
+#aws_secret_key: ""
+aws_profile: "" #perfil del credentials
+hostnames: #es lka forma en q nos traemos la informacion de los servidores (ip publica/privada hostname, dns, id de la instancia)
+  #- availability-zone
+  - ip-address
+filters:
+  instance-state-name: "running"
+  ####estrategia de tags####
+  #en aws crear la instancia con los tags
+  #owner: oscar.diaz
+  #bootcamp: devops
+  #env: prod
+  #AnsibleGroup: app1
+  tag:owner:
+    - "oscar.diaz"
+  tag:env:
+    - prod
+
+keyed_group:
+  - key: tag.AnsibleGroup #validar el inventario en aws el grupo de hosts "ansible-inventory -i prod/inventories/prod/inventory_aws_ec2.yml" --list o --graph para aguapar habilitar el enabled_plugins cfg
+    #separator: ""

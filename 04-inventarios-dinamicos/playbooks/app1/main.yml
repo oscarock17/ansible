@@ -1,0 +1,25 @@
+---
+- name: "instalar servidor httpd"
+  hosts: app1
+  become: true
+  tasks:
+    - name: "instalar paquetes"
+      shell: "amazon-linux-extras enable nginx1"
+
+    - name: "instalar nginx"
+      shell: "amazon-linux-extras install nginx1 -y"
+
+    - name: "create file"
+      file:
+        path: "/usr/share/nginx/html/index.html"
+        state: touch
+
+    - name: "escribir algo en el archivo"
+      lineinfile:
+        path: "/usr/share/nginx/html/index.html"
+        line: "<h1>hola desde la instancia {{ host_group_custom }}</h1>"
+
+    - name: "start nginx"
+      service:
+        name: nginx
+        state: startedthync
