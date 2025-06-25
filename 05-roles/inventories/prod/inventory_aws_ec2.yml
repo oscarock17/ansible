@@ -1,0 +1,19 @@
+plugin: amazon.aws.aws_ec2
+regions:
+  - us-east-1
+ws_profile: ""
+hostnames:
+  - ip-address
+filters:
+  instance-state-name: "running"
+  tag:owner:
+    - "oscar.diaz"
+  tag:env:
+    - prod
+keyed_group:
+  - key: tag.AnsibleGroup
+    separator: ""
+
+#crear un perfil en el credentials de aws 
+#crear las instancias en aws 2 con tag en prod y 2 con tag en dev 
+#para iniciar un rol ejecutar en consola ansible-galaxy init nginx-boot 

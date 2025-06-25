@@ -1,0 +1,7 @@
+---
+# defaults file for deploy-app1
+AUTHOR: author por defecto
+ENVIRONMENT: none
+YEAR: "1560"
+## solo secrets
+SECRET_VALUE_FOR_INTERNET: empty

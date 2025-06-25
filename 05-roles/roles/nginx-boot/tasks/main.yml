@@ -1,0 +1,4 @@
+# tasks file for nginx-boot
+---
+- include_task: 01_install_nginx.yml
+- include_task: 02_start_nginx.yml

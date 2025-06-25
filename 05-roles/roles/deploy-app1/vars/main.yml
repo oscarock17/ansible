@@ -1,0 +1,3 @@
+---
+# vars file for deploy-app1
+ANSIBLE_FOLDER_ROOT: /usd/share/nginx/html

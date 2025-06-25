@@ -1,0 +1,8 @@
+---
+- name: "instalar paquetes"
+  shell: "amazon-linux-extras enabled nginx1"
+  become: true
+
+- name: "instalar nginx1"
+  shell: "amazon-linux-extras install nginx1 -y"
+  become: true

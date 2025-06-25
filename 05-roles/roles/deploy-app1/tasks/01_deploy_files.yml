@@ -1,0 +1,18 @@
+---
+- name: "deploy index file"
+  template:
+    src: index.html.j2
+    dest: "{{ ANSIBLE_FOLDER_ROOT }}/index.html"
+  become: true
+
+- name: "deploy secret file"
+  template:
+    src: secret.html.j2
+    dest: "{{ ANSIBLE_FOLDER_ROOT }}/secret.html"
+  become: true
+
+- name: "restart nginx"
+  services:
+    name: nginx
+    state: restarted
+  become: true

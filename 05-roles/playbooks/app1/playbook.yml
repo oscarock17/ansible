@@ -1,0 +1,7 @@
+---
+- name: install nginx para la app1
+  hosts:
+    - app1
+  roles:
+    - "nginx-boot"
+    - "deploy-app1"

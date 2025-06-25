@@ -1,0 +1,4 @@
+---
+# defaults file for nginx-boot
+#agregar todas las variables q necesite tu rol pero q no son obligarotias y se puede pasar un valor por defecto
+NGINX_VERSION: 1.2.3

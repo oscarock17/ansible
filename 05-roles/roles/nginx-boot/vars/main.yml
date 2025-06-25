@@ -1,0 +1,4 @@
+---
+# vars file for nginx-boot
+# se defininen las contantes de mi rol no se puede modificar ni acceder al valor fuera del rol
+ANSIBLE_FOLDER_ROOT: /usd/share/nginx/html

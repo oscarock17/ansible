@@ -1,0 +1,3 @@
+---
+# handlers file for nginx-boot
+#estos sin los manejadores se puede hacer ejecutar en segundo plano como instalar un servicio y q se prneda el servicio para que la siguiente tarea funcione
