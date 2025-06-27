@@ -10,6 +10,7 @@ Esta carpeta de Ansible está diseñada para proporcionar una guía paso a paso 
 - [03-inventarios-estaticos](./03-inventarios-estaticos/): Utilización de inventarios estáticos para diferentes entornos.
 - [04-inventarios-dinamicos](./04-inventarios-dinamicos/): Implementación de inventarios dinámicos y configuración asociada.
 - [05-roles](./05-roles/): Modularización de la configuración mediante roles de Ansible.
+- [06-encryptacion-variables](./06-encryptacion-variables/): Menejo para la encriptacion de variables.
 - [Practica](./practica/): Ejercicios de practica sobre ansible
 
 ## Requisitos
@@ -73,6 +74,29 @@ ansible vagrant_vm -i inventories/dev/hosts --list-hosts
 ansible-playbook --syntax-check <ruta_playbook.yml>
 # Ejemplo
 ansible-playbook --syntax-check playbooks/main.yml
+```
+
+### Encryptar variables
+
+```bash
+ansible-vault encrypt <archivo_vars.yml>
+# Ejemplo
+ansible-vault encrypt secret_vars.yml
+```
+### Ejecutar playbook con variables encryptadas
+
+```bash
+ansible-playbook <ruta_playbook.yml> --ask-vault-pass
+# Ejemplo
+ansible-playbook playbooks/main.yml --ask-vault-pass
+```
+
+### Ejecutar playbook con variables encryptadas
+
+```bash
+ansible-playbook <ruta_playbook.yml> --vault-password-file <password_file>
+# Ejemplo
+ansible-playbook playbooks/main.yml --vault-password-file vault_pass.txt
 ```
 
 ## Autor
