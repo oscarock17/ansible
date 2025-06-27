@@ -1,0 +1,13 @@
+---
+- name: Usar variable encriptada
+  hosts: all
+  become: yes
+
+  vars_files:
+    - ../inventories/dev/group_vars/secret_vars.yml
+
+  tasks:
+  
+    - name: Mostrar la contraseña encriptada
+      debug:
+        msg: "La contraseña de la base de datos es {{ db_password }}"
