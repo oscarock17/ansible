@@ -11,6 +11,7 @@ Esta carpeta de Ansible está diseñada para proporcionar una guía paso a paso 
 - [04-inventarios-dinamicos](./04-inventarios-dinamicos/): Implementación de inventarios dinámicos y configuración asociada.
 - [05-roles](./05-roles/): Modularización de la configuración mediante roles de Ansible.
 - [06-encryptacion-variables](./06-encryptacion-variables/): Menejo para la encriptacion de variables.
+- [07-ejemplo-inventario-estatico](./07-ejemplo-inventario-estatico/): Implementación de un inventario estatico usando las IPs publicas de las instancias en AWS sobre un archivo host
 - [Practica](./practica/): Ejercicios de practica sobre ansible
 
 ## Requisitos
