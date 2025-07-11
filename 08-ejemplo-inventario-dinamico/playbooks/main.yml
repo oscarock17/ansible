@@ -1,0 +1,18 @@
+---
+- name: "instalar servidor httpd"
+  hosts: app1
+  become: true
+  tasks:
+    - name: "actualizar paquetes"
+      shell: "yum update -y"
+
+    - name: "instalar apache"
+      shell: "yum install -y httpd"
+
+    - name: "start apache"
+      service:
+        name: httpd
+        state: started
+
+#ejecutar el playbook desde la carpeta playbooks
+#ansible-playbook -i ../inventories/dev/inventory_aws_ec2.yml main.yml

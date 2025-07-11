@@ -1,25 +1,27 @@
 
-# Carpeta de Ansible
+# 📄 Carpeta de Ansible
 
 Esta carpeta de Ansible está diseñada para proporcionar una guía paso a paso y ejemplos prácticos sobre el uso y la implementación de Ansible en la configuración y gestión de infraestructuras de TI. Desde conceptos básicos hasta patrones de diseño avanzados, este repositorio contiene una variedad de recursos que cubren diversas áreas de la automatización de infraestructura.
 
-## Estructura de carpetas
+## 📂 Ejercicios disponibles
 
-- [01-primer-playbook](./01-primer-playbook/): Ejemplo básico de un playbook sencillo para comenzar.
-- [02-ejemplo-estructura](./02-ejemplo-estructura/): Esqueleto de una estructura para un proyecto.
-- [03-inventarios-estaticos](./03-inventarios-estaticos/): Utilización de inventarios estáticos para diferentes entornos.
-- [04-inventarios-dinamicos](./04-inventarios-dinamicos/): Implementación de inventarios dinámicos y configuración asociada.
-- [05-roles](./05-roles/): Modularización de la configuración mediante roles de Ansible.
-- [06-encryptacion-variables](./06-encryptacion-variables/): Menejo para la encriptacion de variables.
-- [07-ejemplo-inventario-estatico](./07-ejemplo-inventario-estatico/): Implementación de un inventario estatico usando las IPs publicas de las instancias en AWS sobre un archivo host
-- [Practica](./practica/): Ejercicios de practica sobre ansible
+| Nº | Archivo | Descripción |
+|----|---------|-------------|
+| 01 | [01-primer-playbook](./01-primer-playbook/) | Ejemplo básico de un playbook sencillo para comenzar. |
+| 02 | [02-ejemplo-estructura](./02-ejemplo-estructura/) | Esqueleto de una estructura para un proyecto. |
+| 03 | [03-inventarios-estaticos](./03-inventarios-estaticos/) | Utilización de inventarios estáticos para diferentes entornos. |
+| 04 | [04-inventarios-dinamicos](./04-inventarios-dinamicos/) | Implementación de inventarios dinámicos y configuración asociada. |
+| 05 | [05-roles](./05-roles/) | Modularización de la configuración mediante roles de Ansible. |
+| 06 | [06-encryptacion-variables](./06-encryptacion-variables/) | Menejo para la encriptacion de variables. |
+| 07 | [07-ejemplo-inventario-estatico](./07-ejemplo-inventario-estatico/): | Implementación de un inventario estatico usando las IPs publicas de las instancias en AWS sobre un archivo host. |
+| 08 | [08-ejemplo-inventario-dinamico](./08-ejemplo-inventario-dinamico/): | Implementación de un inventario dinamico usando las IPs publicas de las instancias en AWS. |
 
-## Requisitos
+## 📌 Requisitos
 
 - Ansible >= versión 2.16.5
 - Linux/macOS
 
-## Comandos útiles en Ansible
+## 💻 Comandos útiles en Ansible
 
 ### Ejecutar un playbook
 
@@ -100,7 +102,7 @@ ansible-playbook <ruta_playbook.yml> --vault-password-file <password_file>
 ansible-playbook playbooks/main.yml --vault-password-file vault_pass.txt
 ```
 
-## Autor
+## 👊 Autor
 
 - Este proyecto fue creado por **Oscar Diaz**.
 

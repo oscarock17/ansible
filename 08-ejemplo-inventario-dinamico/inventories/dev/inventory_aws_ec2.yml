@@ -1,0 +1,17 @@
+plugin: amazon.aws.aws_ec2
+regions:
+  - us-east-1
+aws_profile: ansible_test
+hostnames:
+  - ip-address
+filters:
+  instance-state-name: "running"
+  tag:env:
+    - stg
+keyed_groups:
+  - key: tags.AnsibleGroup
+    separator: ''
+
+#ejecutar en la carpeta inventories/dev
+#ansible-inventory -i inventories/dev/inventory_aws_ec2.yml --list
+#ansible-inventory -i inventories/dev/inventory_aws_ec2.yml --graph
