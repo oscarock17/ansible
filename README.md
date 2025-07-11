@@ -16,6 +16,8 @@ Esta carpeta de Ansible está diseñada para proporcionar una guía paso a paso 
 | 07 | [07-ejemplo-inventario-estatico](./07-ejemplo-inventario-estatico/): | Implementación de un inventario estatico usando las IPs publicas de las instancias en AWS sobre un archivo host. |
 | 08 | [08-ejemplo-inventario-dinamico](./08-ejemplo-inventario-dinamico/): | Implementación de un inventario dinamico usando las IPs publicas de las instancias en AWS. |
 | 09 | [09-ejemplo-inventario-dinamico-ssm](./09-ejemplo-inventario-dinamico-ssm/): | Implementación de un inventario dinamico usando AWS con instancias privadas usando SSM |
+| 10 | [10-ejercicio-config-ubuntu](./10-ejercicio-config-ubuntu/): | Ejercicio automatizacion ubuntu con instalacion de nginx y creacion de usuarios etc.. |
+| 11 | [11-ejercicio-config-puertos-usuarios](./11-ejercicio-config-puertos-usuarios/): |Ejercicio automatizacion ubuntu con instalacion de nginx con una landing page, usuarios y puertos. |
 
 ## 📌 Requisitos
 
