@@ -15,6 +15,7 @@ Esta carpeta de Ansible está diseñada para proporcionar una guía paso a paso 
 | 06 | [06-encryptacion-variables](./06-encryptacion-variables/) | Menejo para la encriptacion de variables. |
 | 07 | [07-ejemplo-inventario-estatico](./07-ejemplo-inventario-estatico/): | Implementación de un inventario estatico usando las IPs publicas de las instancias en AWS sobre un archivo host. |
 | 08 | [08-ejemplo-inventario-dinamico](./08-ejemplo-inventario-dinamico/): | Implementación de un inventario dinamico usando las IPs publicas de las instancias en AWS. |
+| 09 | [09-ejemplo-inventario-dinamico-ssm](./09-ejemplo-inventario-dinamico-ssm/): | Implementación de un inventario dinamico usando AWS con instancias privadas usando SSM |
 
 ## 📌 Requisitos
 

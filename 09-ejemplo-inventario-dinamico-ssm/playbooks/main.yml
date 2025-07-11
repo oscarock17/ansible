@@ -1,0 +1,86 @@
+- name: instalar servidor httpd
+  hosts: app
+  become: true
+  vars:
+    ansible_connection: aws_ssm
+    ansible_aws_ssm_bucket_name: test-ansible-oscar-diaz
+    ansible_aws_ssm_region: us-east-1
+    ansible_aws_ssm_profile: ansible_test
+  tasks:
+    - name: Actualizar repositorios
+      yum:
+        name: '*'
+        state: latest
+    - name: instalar nginx1
+      command: amazon-linux-extras install nginx1 -y
+    - name: Iniciar nginx
+      systemd_service:
+        state: started
+        name: nginx
+    - name: Instalar git
+      yum:
+        name:
+          - git
+        state: present
+    - name: Instalar paquete de python virtualenv
+      pip:
+        name:
+          - virtualenv
+    - name: Clonar repositorio
+      git:
+        repo: https://github.com/cloudcampla/bootcamp-devops-app
+        dest: /home/bootcamp-devops-app
+        clone: 'yes'
+    - name: Crear directorio logs para el proyecto
+      file:
+        path: /home/bootcamp-devops-app/logs
+        state: directory
+        mode: '0777'
+        recurse: true
+    - name: Cambiar permisos al archivo microblog
+      file:
+        path: /home/bootcamp-devops-app/logs/microblog.log
+        state: touch
+        mode: '0777'
+        owner: root
+        group: root
+    - name: Modificar archivo requirements.txt
+      lineinfile:
+        path: /home/bootcamp-devops-app/requirements.txt
+        regexp: ^urllib3>=1.26.6
+        line: urllib3<2.0
+    - name: Ejecutar comando crear el entorno virtual
+      command: python3 -m venv venv
+      args:
+        chdir: /home/bootcamp-devops-app
+    - name: Crear y configurar myflaskapp.conf
+      template:
+        src: templates/myflaskapp.conf.j2
+        dest: /etc/nginx/conf.d/myflaskapp.conf
+    - name: reiniciar nginx
+      systemd_service:
+        state: restarted
+        name: nginx
+    - name: Crear entorno virtual
+      command: python3 -m venv venv
+      args:
+        chdir: /home/bootcamp-devops-app
+    - name: Permisos carpeta venv
+      file:
+        path: /home/bootcamp-devops-app/venv
+        state: directory
+        mode: '0777'
+        recurse: true
+    - name: Instalar el requirements.txt
+      pip:
+        requirements: /home/bootcamp-devops-app/requirements.txt
+        virtualenv: /home/bootcamp-devops-app/venv
+    - name: Instalar el Gunicorn
+      pip:
+        name:
+          - gunicorn
+        virtualenv: /home/bootcamp-devops-app/venv
+    - name: Iniciar la aplicación Flask
+      shell: . /home/bootcamp-devops-app/venv/bin/activate && gunicorn -b 0.0.0.0:5000 microblog:app --daemon
+      args:
+        chdir: /home/bootcamp-devops-app
